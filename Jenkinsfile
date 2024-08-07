@@ -3,10 +3,12 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh '''
-                    node --test
-                    node server.js
-                '''
+                timeout(time: 1, unit: 'MINUTES') {
+                    sh '''
+                        node --test
+                        node server.js
+                    '''
+                }
             }
         }
     }
