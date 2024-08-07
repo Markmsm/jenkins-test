@@ -3,8 +3,10 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'node --test'
-                sh 'node server.js'
+                sh '''
+                    node --test
+                    node server.js
+                '''
             }
         }
     }
