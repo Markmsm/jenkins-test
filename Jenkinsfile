@@ -1,12 +1,19 @@
 pipeline {
-    agent { docker { image 'node:20.16.0-alpine3.20' } }
+    agent any
     stages {
         stage('build') {
             steps {
                 timeout(time: 1, unit: 'MINUTES') {
+                    sh 'echo "Building application"'
+                }
+            }
+        }
+
+        stage('tests') {
+            steps {
+                timeout(time: 1, unit: 'MINUTES') {
                     sh '''
                         node --test
-                        node server.js
                     '''
                 }
             }
